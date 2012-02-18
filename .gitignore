@@ -1,0 +1,12 @@
+bin
+obj
+*.suo
+*.user
+*.pidb
+*.userprefs
+packages/*
+*.nupkg
+output/*
+TestResults
+*.sublime-project
+*.sublime-workspace
