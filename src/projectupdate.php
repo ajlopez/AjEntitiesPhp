@@ -6,12 +6,13 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/errors.inc.php');
 	include_once($PagePrefix.'includes/validations.inc.php');
+	include_once($PagePrefix.'includes/postparameters.inc.php');
 
 	if (empty($Code))
-		ErrorAdd('Debe ingresar Código');
+		ErrorAdd('Code is Required');
 
 	if (empty($Description))
-		ErrorAdd('Debe ingresar Descripción');
+		ErrorAdd('Description is Required');
 
 	Connect();
 

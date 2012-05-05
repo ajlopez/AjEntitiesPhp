@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Actualiza Proyecto';
+	$PageTitle = 'Project Update';
 
 	include_once($PagePrefix.'includes/connection.inc.php');
 	include_once($PagePrefix.'includes/users.inc.php');
@@ -8,6 +8,8 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/translations.inc.php');
 	include_once($PagePrefix.'includes/forms.inc.php');
+	include_once($PagePrefix.'includes/getparameters.inc.php');
+	include_once($PagePrefix.'includes/postparameters.inc.php');
 	include_once($PagePrefix.'entities.inc.php');
 
 	Connect();
@@ -25,13 +27,13 @@
 		$rs = mysql_query($sql);
 		$reg = mysql_fetch_object($rs);
 		mysql_free_result($rs);
-		$PageTitle = "Actualiza Proyecto $reg->Code";
+		$PageTitle = "Update Project $reg->Code";
 		$IsNew = 0;
 	}	
 	else if (isset($Id))
 		$IsNew = 0;
 	else {
-		$PageTitle = "Nuevo Proyecto";
+		$PageTitle = "New Project";
 		$IsNew = 1;
 	}
 
@@ -41,13 +43,13 @@
 <center>
 
 <p>
-<a href="projects.php">Proyectos</a>
+<a href="projects.php">Projects</a>
 &nbsp;
 &nbsp;
 <?
 	if (!$IsNew) {
 ?>
-<a href="project.php?Id=<? echo $Id; ?>">Proyecto</a>
+<a href="project.php?Id=<? echo $Id; ?>">Project</a>
 &nbsp;
 &nbsp;
 <?
@@ -69,12 +71,12 @@
 	if (!$IsNew)
 		FieldStaticGenerate("Id",$Id);
 
-	FieldTextGenerate("Code","Código de Proyecto",$reg->Code,16,true);
-	FieldTextGenerate("Description","Descripción",$reg->Description,40,true);
-	FieldTextGenerate("DataBaseName","Base de Datos",$reg->DataBaseName,40);
-	FieldTextGenerate("TablePrefix","Prefijo de Tabla",$reg->TablePrefix,20);
-	FieldTextGenerate("FileSystem","Directorio",$reg->FileSystem,40);
-	FieldMemoGenerate("Comments","Comentarios",$reg->Comments);
+	FieldTextGenerate("Code","Project Code",$reg->Code,16,true);
+	FieldTextGenerate("Description","Description",$reg->Description,40,true);
+	FieldTextGenerate("DataBaseName","Database",$reg->DataBaseName,40);
+	FieldTextGenerate("TablePrefix","Table Prefix",$reg->TablePrefix,20);
+	FieldTextGenerate("FileSystem","Directory in File System",$reg->FileSystem,40);
+	FieldMemoGenerate("Comments","Comments",$reg->Comments);
 
 	FieldOkGenerate();
 ?>

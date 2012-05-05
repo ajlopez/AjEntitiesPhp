@@ -333,12 +333,12 @@ function FieldCheckGenerate($name,$legend,$value,$required=false) {
 }
 
 function FieldOkGenerate() {
-		echo "<td colspan=2 class='legend' align=center><input type='submit' value='Aceptar'></td>\n";
+		echo "<td colspan=2 class='legend' align=center><input type='submit' value='Accept'></td>\n";
 }
 
 function FieldOkDeleteGenerate() {
-	echo "<td colspan=2 class='legend' align=center><input type='submit' name='Aceptar' value='Aceptar'>\n";
-	echo "<input type='submit' name='Eliminar' value='Eliminar'></td>\n";
+	echo "<td colspan=2 class='legend' align=center><input type='submit' name='Accept' value='Accept'>\n";
+	echo "<input type='submit' name='Delete' value='Delete'></td>\n";
 }
 
 function FormOpen($action='',$method='post') {
