@@ -49,25 +49,25 @@ function MenuLeftClose()
 <?
 
 	MenuLeftOpen(SiteName);
-	MenuLeftOption('Principal','index.php');
-	MenuLeftOption('Proyectos','projects.php');
-	MenuLeftOption('Entidades','entities.php');
-	MenuLeftOption('Vistas','views.php');
+	MenuLeftOption('Home','index.php');
+	MenuLeftOption('Projects','projects.php');
+	MenuLeftOption('Entities','entities.php');
+	MenuLeftOption('Views','views.php');
 	MenuLeftClose();
 
 	if (UserIdentified()) {
 		MenuLeftOpen(UserName());
-		MenuLeftOption('Su P&aacute;gina', 'users/user.php');
+		MenuLeftOption('Your Profile', 'users/user.php');
 		If (UserIsAdministrator()) {
-			MenuLeftOption('Administrador','admin/index.php');
+			MenuLeftOption('Administrator','admin/index.php');
 		}
-		MenuLeftOption('Salir','users/logout.php');
+		MenuLeftOption('Logout','users/logout.php');
 		MenuLeftClose();
 	}
 	else {
-		MenuLeftOpen('Usuario');
-		MenuLeftOption('Ingrese','users/login.php');
-		MenuLeftOption('Registrarse','users/register.php');
+		MenuLeftOpen('User');
+		MenuLeftOption('Login','users/login.php');
+		MenuLeftOption('Register','users/register.php');
 		MenuLeftClose();
 	}
 ?>
