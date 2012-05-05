@@ -10,6 +10,7 @@
 	include_once($PagePrefix.'includes/utilities.inc.php');
 	include_once($PagePrefix.'includes/translations.inc.php');
 	include_once($PagePrefix.'entities.inc.php');
+	include_once($PagePrefix.'includes/getparameters.inc.php');
 
 	Connect();
 	

@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Proyectos';
+	$PageTitle = 'Projects';
 	
 	include_once($PagePrefix . 'includes/connection.inc.php');
 	include_once($PagePrefix . 'includes/users.inc.php');
@@ -10,7 +10,7 @@
 	$sql = "select Id, Code, Description from projects order by Code";	 
 	$rs = mysql_query($sql);
 
-	$titles = array('Id', 'Código', 'Descripción');
+	$titles = array('Id', 'Code', 'Description');
 
 	SessionPut('ProjectLink',PageActual());
 
@@ -20,7 +20,7 @@
 <center>
 
 <p>
-<a href="projectform.php">Nuevo Proyecto...</a>
+<a href="projectform.php">New Project...</a>
 <p>
 
 <?		
