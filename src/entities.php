@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Entidades';
+	$PageTitle = 'Entities';
 	
 	include_once($PagePrefix . 'includes/connection.inc.php');
 	include_once($PagePrefix . 'includes/users.inc.php');
@@ -11,7 +11,7 @@
 	$sql = "select e.Id, e.Code, e.IdProject, e.Description from entities e left join projects p on e.IdProject = p.Id order by p.Code, e.Code";	 
 	$rs = mysql_query($sql);
 
-	$titles = array('Id', 'Proyecto', 'Código', 'Descripción');
+	$titles = array('Id', 'Project', 'Code', 'Description');
 
 	SessionPut('EntityLink',PageActual());
 
@@ -21,7 +21,7 @@
 <center>
 
 <p>
-<a href="entityform.php">Nueva Entidad...</a>
+<a href="entityform.php">New Entity...</a>
 <p>
 
 <?		
