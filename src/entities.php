@@ -21,7 +21,7 @@
 <center>
 
 <p>
-<a href="entityform.php">New Entity...</a>
+<a href="entityform.php">New Entity</a>
 <p>
 
 <?		

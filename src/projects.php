@@ -20,7 +20,7 @@
 <center>
 
 <p>
-<a href="projectform.php">New Project...</a>
+<a href="projectform.php">New Project</a>
 <p>
 
 <?		

@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Actualiza Vista';
+	$PageTitle = 'Update View';
 
 	include_once($PagePrefix.'includes/connection.inc.php');
 	include_once($PagePrefix.'includes/users.inc.php');
@@ -8,6 +8,8 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/translations.inc.php');
 	include_once($PagePrefix.'includes/forms.inc.php');
+	include_once($PagePrefix.'includes/getparameters.inc.php');
+	
 	include_once($PagePrefix.'entities.inc.php');
 
 	Connect();
@@ -24,18 +26,18 @@
 		$rs = mysql_query($sql);
 		$reg = mysql_fetch_object($rs);
 		mysql_free_result($rs);
-		$PageTitle = "Actualiza Vista $reg->Code";
+		$PageTitle = "Update View $reg->Code";
 		$IsNew = 0;
 	}	
 	else if (isset($Id))
 		$IsNew = 0;
 	else {
-		$PageTitle = "Nueva Vista";
+		$PageTitle = "New View";
 		$IsNew = 1;
 		if (!$IsPostBack && $IdEntity)
 			$reg->IdEntity = $IdEntity;
 	}
-
+
 	if ($IdProject)
 		$rsEntities = mysql_query("select Id, Code from entities where IdProject = $IdProject order by 2");
 	else
@@ -47,13 +49,13 @@
 <center>
 
 <p>
-<a href="views.php">Vistas</a>
+<a href="views.php">Views</a>
 &nbsp;
 &nbsp;
 <?
 	if (!$IsNew) {
 ?>
-<a href="view.php?Id=<? echo $Id; ?>">Vista</a>
+<a href="view.php?Id=<? echo $Id; ?>">View</a>
 &nbsp;
 &nbsp;
 <?
@@ -75,10 +77,10 @@
 	if (!$IsNew)
 		FieldStaticGenerate("Id",$Id);
 
-	FieldTextGenerate("Code","Código de Vista",$reg->Code,16,true);
-	FieldComboRsGenerate("IdEntity","Entidad", $rsEntities, $reg->IdEntity, 'Id', 'Code', true);
-	FieldTextGenerate("Description","Descripción",$reg->Description,40,true);
-	FieldMemoGenerate("Comments","Comentarios",$reg->Comments);
+	FieldTextGenerate("Code", "Code", $reg->Code, 16, true);
+	FieldComboRsGenerate("IdEntity", "Entity", $rsEntities, $reg->IdEntity, 'Id', 'Code', true);
+	FieldTextGenerate("Description", "Description", $reg->Description, 40, true);
+	FieldMemoGenerate("Comments", "Comments", $reg->Comments);
 
 	FieldOkGenerate();
 ?>
@@ -95,8 +97,7 @@
 </center>
 
 <?
-	mysql_free_result($rsProjects);
+	mysql_free_result($rsEntities);
 	Disconnect();
 	include_once($PagePrefix.'includes/footer.inc.php');
 ?>
-

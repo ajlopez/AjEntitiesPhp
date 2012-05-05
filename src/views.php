@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Vistas';
+	$PageTitle = 'Views';
 	
 	include_once($PagePrefix . 'includes/connection.inc.php');
 	include_once($PagePrefix . 'includes/users.inc.php');
@@ -12,9 +12,9 @@
 	$sql .= " order by p.Code, e.Code, v.Code";	 
 	$rs = mysql_query($sql);
 
-	$titles = array('Id', 'Proyecto', 'Entidad', 'Código', 'Descripción');
+	$titles = array('Id', 'Project', 'Entity', 'Code', 'Description');
 
-	SessionPut('ViewLink',PageCurrent());
+	SessionPut('ViewLink', PageCurrent());
 
 	include_once($PagePrefix . 'includes/header.inc.php');
 ?>
@@ -22,7 +22,7 @@
 <center>
 
 <p>
-<a href="viewform.php">Nueva Vista...</a>
+<a href="viewform.php">New View</a>
 <p>
 
 <?		
