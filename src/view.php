@@ -13,8 +13,8 @@
 
 	Connect();
 	
-	SessionPut('ViewLink',PageActual());
-	SessionPut('FieldLink',PageActual());
+	SessionPut('ViewLink',PageCurrent());
+	SessionPut('FieldLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

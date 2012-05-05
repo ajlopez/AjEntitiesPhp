@@ -28,7 +28,7 @@
 
 	Connect();
 	
-	SessionPut('@{Entity->Code}Link',PageActual());
+	SessionPut('@{Entity->Code}Link',PageCurrent());
 
 	$sql = "select * from @{Entity->TableName} where Id = $Id";
 	$rs = mysql_query($sql);

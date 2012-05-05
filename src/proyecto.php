@@ -15,7 +15,7 @@
 
 	Connect();
 	
-	SessionPut('ProyectoLink',PageActual());
+	SessionPut('ProyectoLink',PageCurrent());
 
 	$sql = "select * from projects where Id = $Id";
 	$rs = mysql_query($sql);

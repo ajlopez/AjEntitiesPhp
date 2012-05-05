@@ -13,7 +13,7 @@
 
 	$titles = array('Id','Code','Description');
 
-	SessionPut('ProyectoLink',PageActual());
+	SessionPut('ProyectoLink',PageCurrent());
 
 	include_once($PagePrefix . 'includes/header.inc.php');
 ?>

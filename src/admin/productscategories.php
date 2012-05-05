@@ -11,7 +11,7 @@
 	UserControl();
 	AdministratorControl();
 
-	SessionPut('ProductsCategoryLink',PageActual());
+	SessionPut('ProductsCategoryLink',PageCurrent());
 
 	Connect();
 

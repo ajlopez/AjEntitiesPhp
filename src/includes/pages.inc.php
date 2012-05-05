@@ -1,14 +1,14 @@
 <?
 	include_once($PagePrefix.'includes/random.inc.php');
 
-function PageActual() {
+function PageCurrent() {
 	global $SCRIPT_NAME;
 	global $QUERY_STRING;
 
-	$link = $SCRIPT_NAME;
+	$link = $_SERVER['SCRIPT_NAME'];
 
-	if ($QUERY_STRING)
-		$link .= "?$QUERY_STRING";
+	if ($_SERVER['QUERY_STRING'])
+		$link .= '?' . $_SERVER['QUERY_STRING'];
 
 	return $link;
 }
@@ -18,7 +18,7 @@ function PageMain() {
 }
 
 function PageUser() {
-	return "index.php";
+	return "user/index.php";
 }
 
 function PageAdministrator() {

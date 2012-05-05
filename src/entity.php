@@ -13,9 +13,9 @@
 
 	Connect();
 	
-	SessionPut('EntityLink',PageActual());
-	SessionPut('FieldLink',PageActual());
-	SessionPut('ViewLink',PageActual());
+	SessionPut('EntityLink',PageCurrent());
+	SessionPut('FieldLink',PageCurrent());
+	SessionPut('ViewLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

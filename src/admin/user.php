@@ -13,7 +13,7 @@
 
 	Connect();
 	
-	SessionPut('UserLink',PageActual());
+	SessionPut('UserLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

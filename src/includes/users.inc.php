@@ -9,7 +9,7 @@ function UserControl($link='') {
 	global $HTTP_SERVER_VARS;
 	global $PagePrefix;
 
-	$User = SessionGet("ActualUser");
+	$User = SessionGet("CurrentUser");
 	$UserId = $User->Id;
 
 	if (empty($UserId)) {
@@ -25,7 +25,7 @@ function UserControl($link='') {
 }
 
 function UserIdentified() {
-	$User = SessionGet("ActualUser");
+	$User = SessionGet("CurrentUser");
 	if (isset($User))
 		return(true);
 	return(false);	
@@ -34,53 +34,53 @@ function UserIdentified() {
 function UserVerified() {
 	if (!UserIdentified())
 		return false;
-	$User = UserActual();
+	$User = UserCurrent();
 	if (IsSet($User))
 		return true;
 	return false;
 }
 
-function UserActual() {
-	return SessionGet("ActualUser");
+function UserCurrent() {
+	return SessionGet("CurrentUser");
 }
 
 function UserId() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->Id);
 }
 
 function UserName() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->UserName);
 }
 
 function UserPassword() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->Password);
 }
 
 function UserFirstName() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->FirstName);
 }
 
 function UserLastName() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->LastName);
 }
 
 function UserGenre() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->Genre);
 }
 
 function UserEmail() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->Email);
 }
 
 function UserIsAdministrator() {
-	$User = UserActual();
+	$User = UserCurrent();
 	return($User->IsAdministrator);
 }
 
@@ -108,7 +108,7 @@ function AdministratorControl($link='') {
 }
 
 function UserLogin($user) {
-	SessionPut("ActualUser", $user);
+	SessionPut("CurrentUser", $user);
 	EventLogin();
 	Connect();
 	mysql_query("update users set DateTimeLastLogin = now(), LoginCount = LoginCount+1 where Id = " . UserId());

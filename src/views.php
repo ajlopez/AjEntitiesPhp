@@ -14,7 +14,7 @@
 
 	$titles = array('Id', 'Proyecto', 'Entidad', 'Código', 'Descripción');
 
-	SessionPut('ViewLink',PageActual());
+	SessionPut('ViewLink',PageCurrent());
 
 	include_once($PagePrefix . 'includes/header.inc.php');
 ?>

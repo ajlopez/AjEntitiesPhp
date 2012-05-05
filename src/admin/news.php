@@ -15,7 +15,7 @@
 	
 	Connect();
 
-	SessionPut('NewsLink',PageActual());
+	SessionPut('NewsLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

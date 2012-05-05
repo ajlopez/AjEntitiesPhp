@@ -11,7 +11,7 @@
 	UserControl();
 	AdministratorControl();
 
-	SessionPut('NewsLink',PageActual());
+	SessionPut('NewsLink',PageCurrent());
 
 	Connect();
 

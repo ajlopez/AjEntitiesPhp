@@ -26,7 +26,7 @@
 
 	$titles = array(@{Titles});
 
-	SessionPut('@{Entity->Code}Link',PageActual());
+	SessionPut('@{Entity->Code}Link',PageCurrent());
 
 	include_once($PagePrefix . 'includes/header.inc.php');
 %>

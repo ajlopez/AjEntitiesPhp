@@ -14,8 +14,8 @@
 
 	Connect();
 	
-	SessionPut('ProjectLink',PageActual());
-	SessionPut('EntityLink',PageActual());
+	SessionPut('ProjectLink',PageCurrent());
+	SessionPut('EntityLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

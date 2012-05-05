@@ -12,7 +12,7 @@
 
 	Connect();
 	
-	SessionPut('NewsCategoryLink',PageActual());
+	SessionPut('NewsCategoryLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();

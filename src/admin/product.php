@@ -15,7 +15,7 @@
 	
 	Connect();
 
-	SessionPut('ProductLink',PageActual());
+	SessionPut('ProductLink',PageCurrent());
 
 	if (!isset($Id))
 		PageExit();
