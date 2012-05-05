@@ -4,6 +4,7 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/errors.inc.php');
 	include_once($PagePrefix.'includes/validations.inc.php');
+	include_once($PagePrefix.'includes/postparameters.inc.php');
 
 	if (empty($IdEntity))
 		ErrorAdd('Debe especificar Entidad');

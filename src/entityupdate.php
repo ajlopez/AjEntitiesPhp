@@ -4,20 +4,21 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/errors.inc.php');
 	include_once($PagePrefix.'includes/validations.inc.php');
+	include_once($PagePrefix.'includes/postparameters.inc.php');
 
 	$IsPostBack = true;
 
 	if (empty($Code))
-		ErrorAdd('Debe ingresar Código');
+		ErrorAdd('Code is Required');
 
 	if (empty($Description))
-		ErrorAdd('Debe ingresar Descripción');
+		ErrorAdd('Description is Required');
 
 	if (empty($Name))
-		ErrorAdd('Debe ingresar Nombre');
+		ErrorAdd('Name is Required');
 
 	if (empty($SetName))
-		ErrorAdd('Debe ingresar Nombre de Conjunto');
+		ErrorAdd('Set Name is Required');
 
 	Connect();
 

@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Actualiza Entidad';
+	$PageTitle = 'Update Entity';
 
 	include_once($PagePrefix.'includes/connection.inc.php');
 	include_once($PagePrefix.'includes/users.inc.php');
@@ -8,12 +8,16 @@
 	include_once($PagePrefix.'includes/session.inc.php');
 	include_once($PagePrefix.'includes/translations.inc.php');
 	include_once($PagePrefix.'includes/forms.inc.php');
+	include_once($PagePrefix.'includes/getparameters.inc.php');
+	include_once($PagePrefix.'includes/postparameters.inc.php');
+
 	include_once($PagePrefix.'entities.inc.php');
 
 	Connect();
 
 	if (ErrorHas()) {
 		$reg->Code = $Code;
+		$reg->IdProject = $IdProject;
 		$reg->Description = $Description;
 		$reg->Name = $Name;
 		$reg->SetName = $SetName;
@@ -28,13 +32,13 @@
 		$rs = mysql_query($sql);
 		$reg = mysql_fetch_object($rs);
 		mysql_free_result($rs);
-		$PageTitle = "Actualiza Entidad $reg->Code";
+		$PageTitle = "Update Entity $reg->Code";
 		$IsNew = 0;
 	}	
 	else if (isset($Id))
 		$IsNew = 0;
 	else {
-		$PageTitle = "Nueva Entidad";
+		$PageTitle = "New Entity";
 		$IsNew = 1;
 		if (!ErrorHas() && $IdProject)
 			$reg->IdProject = $IdProject;
@@ -48,13 +52,13 @@
 <center>
 
 <p>
-<a href="entities.php">Entidades</a>
+<a href="entities.php">Entities</a>
 &nbsp;
 &nbsp;
 <?
 	if (!$IsNew) {
 ?>
-<a href="entity.php?Id=<? echo $Id; ?>">Entidad</a>
+<a href="entity.php?Id=<? echo $Id; ?>">Entity</a>
 &nbsp;
 &nbsp;
 <?
@@ -76,16 +80,16 @@
 	if (!$IsNew)
 		FieldStaticGenerate("Id",$Id);
 
-	FieldTextGenerate("Code","Código de Entidad",$reg->Code,16,true);
-	FieldComboRsGenerate("IdProject","Proyecto", $rsProjects, $reg->IdProject, 'Id', 'Code', true);
-	FieldTextGenerate("Description","Descripción",$reg->Description,40,true);
-	FieldTextGenerate("Name","Nombre",$reg->Name,40,true);
-	FieldTextGenerate("SetName","Nombre de Conjunto",$reg->SetName,40,true);
-	FieldTextGenerate("TableName","Nombre de Tabla",$reg->TableName,40);
+	FieldTextGenerate("Code","Entity Code",$reg->Code,16,true);
+	FieldComboRsGenerate("IdProject","Project", $rsProjects, $reg->IdProject, 'Id', 'Code', true);
+	FieldTextGenerate("Description","Description",$reg->Description,40,true);
+	FieldTextGenerate("Name","Name",$reg->Name,40,true);
+	FieldTextGenerate("SetName","Set Name",$reg->SetName,40,true);
+	FieldTextGenerate("TableName","Table Name",$reg->TableName,40);
 	FieldTextGenerate("Descriptor","Descriptor",$reg->Descriptor,40);
-	FieldTextGenerate("PluralDescriptor","Descriptor Plural",$reg->PluralDescriptor,40);
-	FieldComboHashGenerate("Genre","Género",$EntityGenres,$reg->Genre);
-	FieldMemoGenerate("Comments","Comentarios",$reg->Comments);
+	FieldTextGenerate("PluralDescriptor","Set Descriptor",$reg->PluralDescriptor,40);
+	FieldComboHashGenerate("Genre","Genre",$EntityGenres,$reg->Genre);
+	FieldMemoGenerate("Comments","Comments",$reg->Comments);
 
 	FieldOkGenerate();
 ?>
@@ -105,4 +109,3 @@
 	Disconnect();
 	include_once($PagePrefix.'includes/footer.inc.php');
 ?>
-
