@@ -1,5 +1,5 @@
 <?
-	$PageTitle = 'Entidad';
+	$PageTitle = 'Entity';
 
 	include_once($PagePrefix.'includes/connection.inc.php');
 	include_once($PagePrefix.'includes/users.inc.php');
@@ -9,6 +9,7 @@
 	include_once($PagePrefix.'includes/forms.inc.php');
 	include_once($PagePrefix.'includes/utilities.inc.php');
 	include_once($PagePrefix.'includes/translations.inc.php');
+	include_once($PagePrefix.'includes/getparameters.inc.php');
 	include_once($PagePrefix.'entities.inc.php');
 
 	Connect();
@@ -25,7 +26,7 @@
 	$reg = mysql_fetch_object($rs);
 	mysql_free_result($rs);
 
-	$PageTitle = "Entidad $reg->Code";
+	$PageTitle = "Entity $reg->Code";
 
 	include_once($PagePrefix.'includes/header.inc.php');
 ?>
@@ -33,56 +34,56 @@
 <center>
 
 <p>
-<a href="entities.php">Entidades</a>
+<a href="entities.php">Entities</a>
 &nbsp;
 &nbsp;
 <?
 	if ($reg->IdProject) {
 ?>
-<a href="project.php?Id=<? echo $reg->IdProject ?>">Proyecto</a>
+<a href="project.php?Id=<? echo $reg->IdProject ?>">Project</a>
 &nbsp;
 &nbsp;
 <?
 	}
 ?>
-<a href="entityform.php?Id=<? echo $Id; ?>">Actualiza</a>
+<a href="entityform.php?Id=<? echo $Id; ?>">Update</a>
 &nbsp;
 &nbsp;
-<a href="entitygenform.php?IdEntity=<? echo $Id; ?>">Genera Archivo</a>
+<a href="entitygenform.php?IdEntity=<? echo $Id; ?>">Generate File</a>
 &nbsp;
 &nbsp;
-<a href="entitydelete.php?Id=<? echo $Id; ?>">Elimina</a>
+<a href="entitydelete.php?Id=<? echo $Id; ?>">Delete</a>
 </p>
 <p>
 
 <table cellspacing=1 cellpadding=2 class="form" width='90%'>
 <?
 	FieldStaticGenerate("Id",$Id);
-	FieldStaticGenerate("C&oacute;digo", $reg->Code);
+	FieldStaticGenerate("Code", $reg->Code);
 	if ($reg->IdProject)
-		FieldStaticGenerate("Proyecto", TranslateDescription('projects',$reg->IdProject,'Code'));
-	FieldStaticGenerate("Descripción", $reg->Description);
-	FieldStaticGenerate("Nombre", $reg->Name);
-	FieldStaticGenerate("Nombre de Conjunto", $reg->SetName);
-	FieldStaticGenerate("Nombre de Tabla", $reg->TableName);
+		FieldStaticGenerate("Project", TranslateDescription('projects',$reg->IdProject,'Code'));
+	FieldStaticGenerate("Description", $reg->Description);
+	FieldStaticGenerate("Name", $reg->Name);
+	FieldStaticGenerate("Set Name", $reg->SetName);
+	FieldStaticGenerate("Table Name", $reg->TableName);
 	FieldStaticGenerate("Descriptor", $reg->Descriptor);
-	FieldStaticGenerate("Descriptor Plural", $reg->PluralDescriptor);
-	FieldStaticGenerate("Género", $EntityGenres[$reg->Genre]);
-	FieldStaticMemoGenerate("Comentarios", $reg->Comments);
+	FieldStaticGenerate("Set Descriptor", $reg->PluralDescriptor);
+	FieldStaticGenerate("Genre", $EntityGenres[$reg->Genre]);
+	FieldStaticMemoGenerate("Comments", $reg->Comments);
 
-	FieldStaticGenerate("Fecha/Hora Alta",$reg->DateTimeInsert);
-	FieldStaticGenerate("Fecha/Hora Modificación",$reg->DateTimeUpdate);
+	FieldStaticGenerate("Creation Date/Time",$reg->DateTimeInsert);
+	FieldStaticGenerate("Update Date/Time",$reg->DateTimeUpdate);
 ?>
 </table>
 <a name=fields>
-<h2>Campos</h2>
+<h2>Fields</h2>
 <p>
-<a href="fieldform.php?IdEntity=<?= $Id ?>">Agrega Campo</a>
+<a href="fieldform.php?IdEntity=<?= $Id ?>">Add New Field</a>
 </p>
 <?
 	$rsFields = mysql_query("select * from entity_fields where IdEntity = $Id order by OrderNo");
 
-	TableOpen(array('No','Nombre','Tipo','Tipo SQL','Acciones'),'98%');
+	TableOpen(array('No','Name','Type','SQL Type','Actions'),'98%');
 	if (mysql_num_rows($rsFields)) {
 		while ($regfld = mysql_fetch_object($rsFields)) {
 			RowOpen();
@@ -94,10 +95,10 @@
 			else
 				DatumGenerate($regfld->SqlType);
 			DatumGenerate(
-				"<a href='fieldform.php?IdEntity=$Id&OrderNo=$regfld->OrderNo'>Insertar</a>
-				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=up'>Subir</a>
-				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=down'>Bajar</a>
-				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=delete'>Eliminar</a>"	
+				"<a href='fieldform.php?IdEntity=$Id&OrderNo=$regfld->OrderNo'>Insert</a>
+				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=up'>Up</a>
+				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=down'>Down</a>
+				<a href='fieldaction.php?IdField=$regfld->Id&IdEntity=$Id&OrderNo=$regfld->OrderNo&Action=delete'>Delete</a>"	
 			);
 			RowClose();
 		}
@@ -107,14 +108,14 @@
 ?>
 
 <a name=views>
-<h2>Vistas</h2>
+<h2>Views</h2>
 <p>
-<a href="viewform.php?IdEntity=<?= $Id ?>">Agrega Vista</a>
+<a href="viewform.php?IdEntity=<?= $Id ?>">Add New View</a>
 </p>
 <?
 	$rsViews = mysql_query("select * from views where IdEntity = $Id order by Code");
 
-	TableOpen(array('Id','Código','Descripción'),'98%');
+	TableOpen(array('Id','Code','Description'),'98%');
 	if (mysql_num_rows($rsViews)) {
 		while ($regview = mysql_fetch_object($rsViews)) {
 			RowOpen();

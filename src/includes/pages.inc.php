@@ -2,9 +2,6 @@
 	include_once($PagePrefix.'includes/random.inc.php');
 
 function PageCurrent() {
-	global $SCRIPT_NAME;
-	global $QUERY_STRING;
-
 	$link = $_SERVER['SCRIPT_NAME'];
 
 	if ($_SERVER['QUERY_STRING'])
